@@ -1,6 +1,5 @@
 # ItemNull
---------------------
-
+----------
 [`SetVisible`](#LuaItemNull_SetVisible)
 [`Show`](#LuaItemNull_Show)
 [`Hide`](#LuaItemNull_Hide)
@@ -263,3 +262,199 @@ Check if this Item is still vaild. Once the Item get destroyed, this api will re
 * <h4 id="LuaItemNull_GetBaseType">GetBaseType</h4>
 Get its base type. The value can be `Item` or `Wnd`.
 > (`string`) ItemNull:GetBaseType()
+
+# ItemText
+----------
+[`SetFontScheme`](#LuaItemText_SetFontScheme)
+[`GetFontScheme`](#LuaItemText_GetFontScheme)
+[`SetRange`](#LuaItemText_SetRange)
+[`SetTime`](#LuaItemText_SetTime)
+[`SetNumber`](#LuaItemText_SetNumber)
+[`GetNumber`](#LuaItemText_GetNumber)
+[`SetText`](#LuaItemText_SetText)
+[`GetText`](#LuaItemText_GetText)
+[`GetTextLen`](#LuaItemText_GetTextLen)
+[`SetVAlign`](#LuaItemText_SetVAlign)
+[`GetVAlign`](#LuaItemText_GetVAlign)
+[`SetHAlign`](#LuaItemText_SetHAlign)
+[`GetHAlign`](#LuaItemText_GetHAlign)
+[`SetRowSpacing`](#LuaItemText_SetRowSpacing)
+[`GetRowSpacing`](#LuaItemText_GetRowSpacing)
+[`SetMultiLine`](#LuaItemText_SetMultiLine)
+[`IsMultiLine`](#LuaItemText_IsMultiLine)
+[`FormatTextForDraw`](#LuaItemText_FormatTextForDraw)
+[`AutoSize`](#LuaItemText_AutoSize)
+[`SetCenterEachLine`](#LuaItemText_SetCenterEachLine)
+[`IsCenterEachLine`](#LuaItemText_IsCenterEachLine)
+[`SetFontSpacing`](#LuaItemText_SetFontSpacing)
+[`GetFontSpacing`](#LuaItemText_GetFontSpacing)
+[`SetRichText`](#LuaItemText_SetRichText)
+[`IsRichText`](#LuaItemText_IsRichText)
+[`GetFontScale`](#LuaItemText_GetFontScale)
+[`SetFontScale`](#LuaItemText_SetFontScale)
+[`SetFontID`](#LuaItemText_SetFontID)
+[`SetFontColor`](#LuaItemText_SetFontColor)
+[`SetFontBorder`](#LuaItemText_SetFontBoder)
+[`SetFontShadow`](#LuaItemText_SetFontShadow)
+[`GetFontID`](#LuaItemText_GetFontID)
+[`GetFontColor`](#LuaItemText_GetFontColor)
+[`GetFontBoder`](#LuaItemText_GetFontBoder)
+[`GetFontProjection`](#LuaItemText_GetFontProjection)
+[`GetTextExtent`](#LuaItemText_GetTextExtent)
+[`GetTextPosExtent`](#LuaItemText_GetTextPosExtent)
+
+* <h4 id="LuaItemText_SetFontScheme">SetFontScheme</h4>
+Set text font scheme.<br>
+This api will load `pFontScheme` by `nFontID`, and then call this:<br>
+[`:SetFontID(pFontScheme->nFontID)`](#LuaItemText_SetFontID)<br>
+[`:SetFontColor(pFontScheme->GetFontColor())`](#LuaItemText_SetFontID)<br>
+[`:SetFontBorder(pFontScheme->nBorderSize, pFontScheme->GetBoderColor())`](#LuaItemText_SetFontID)<br>
+[`:SetFontShadow(pFontScheme->nShadowOffset, pFontScheme->GetShadowColor())`](#LuaItemText_SetFontShadow)<br>
+[`:SetFontScale(pFontScheme->fScale)`](#LuaItemText_SetFontScale)<br>
+> (`void`) ItemText:SetFontScheme(`number` nFont)
+
+
+* <h4 id="LuaItemText_GetFontScheme">GetFontScheme</h4>
+Get text font scheme.
+> (`number` nFont) ItemText:SetFontScheme()
+
+* <h4 id="LuaItemText_SetRange">SetRange</h4>
+Set text as range format. Notice that this api is the same as [`:SetText(nValue1 .. szDelimiter .. nVlaue2)`](#LuaItemText_SetText). But this api is high performanced than `:SetText` cause there is no intermediate string when concat string.
+> * (`void`) ItemText:SetRange(`number` nValue, `string` szDelimiter)
+> * (`void`) ItemText:SetRange(`number` nValue1, `string` szDelimiter, `number` nValue2)
+
+* <h4 id="LuaItemText_SetTime">SetTime</h4>
+Set text as time format. Notice that this api is the same as [`:SetText(("%02d:%02d:%02d"):format(TimeToHMS(nTime)))`](#LuaItemText_SetText). But this api is high performanced than `:SetText` cause there is no intermediate string when concat string.
+> (`void`) ItemText:SetTime(`number` nTimeStamp)
+
+* <h4 id="LuaItemText_SetNumber">SetNumber</h4>
+Set text as pure number. Notice that this api is the same as [`:SetText(tostring(nNumber))`](#LuaItemText_SetText). But this api is high performanced than `:SetText` cause there is no intermediate string when concat string.
+> (`void`) ItemText:SetNumber(`number` nNumber)
+
+* <h4 id="LuaItemText_GetNumber">GetNumber</h4>
+Get text as pure number. Notice that this api is the same as [`tonumber(:GetText())`](#LuaItemText_SetText). But this api is high performanced than `:SetText` cause there is no intermediate string when concat string.
+> (`number` nNumber) ItemText:GetNumber()
+
+* <h4 id="LuaItemText_SetText">SetText</h4>
+Set display text.
+> (`void`) ItemText:SetText(`string` szText)
+
+* <h4 id="LuaItemText_GetText">GetText</h4>
+Get display text.
+> (`string` szText) ItemText:GetText()
+
+* <h4 id="LuaItemText_GetTextLen">GetTextLen</h4>
+Get the length of display text.
+> (`number` nLen) ItemText:GetTextLen()
+
+* <h4 id="LuaItemText_SetVAlign">SetVAlign</h4>
+Set text vertical alignment. Enum: `0-top`, `1-center`, `2-bottom`. Notice that you may need to call [`:FormatTextForDraw()`](#LuaItemText_FormatTextForDraw) for apply the change and redraw text immediately.
+> (`void`) ItemText:SetVAlign(`number` nAlign)
+
+* <h4 id="LuaItemText_GetVAlign">GetVAlign</h4>
+Get text vertical alignment.
+> (`number` nAlign) ItemText:GetVAlign()
+
+* <h4 id="LuaItemText_SetHAlign">SetHAlign</h4>
+Set text horizontal alignment. Enum: `0-left`, `1-middle`, `2-right`. Notice that you may need to call [`:FormatTextForDraw()`](#LuaItemText_FormatTextForDraw) for apply the change and redraw text immediately.
+> (`void`) ItemText:SetHAlign(`number` nAlign)
+
+* <h4 id="LuaItemText_GetHAlign">GetHAlign</h4>
+Get text horizontal alignment.
+> (`number` nAlign) ItemText:GetHAlign()
+
+* <h4 id="LuaItemText_SetRowSpacing">SetRowSpacing</h4>
+Set the spacing of two rows.
+> (`void`) ItemText:SetRowSpacing(`number` nSpacing)
+
+* <h4 id="LuaItemText_GetRowSpacing">GetRowSpacing</h4>
+Get the spacing of two rows.
+> (`number` nSpacing) ItemText:GetRowSpacing()
+
+* <h4 id="LuaItemText_SetMultiLine">SetMultiLine</h4>
+Set if this text control supports multiline display. Support multiline display means that when the width of the inner text reaches the width of the control, it will auto wrap.
+> (`void`) ItemText:SetMultiLine(`bool` bMultiline)
+
+* <h4 id="LuaItemText_IsMultiLine">IsMultiLine</h4>
+Get if it supports multiline.
+> (`bool` bMultiline) ItemText:SetMultiLine()
+
+* <h4 id="LuaItemText_FormatTextForDraw">FormatTextForDraw</h4>
+Format and redraw the text. When you change the style of text (such as alignment and row spacing), you need to call this api to apply style immediately.
+> (`void`) ItemText:FormatTextForDraw()
+
+* <h4 id="LuaItemText_AutoSize">AutoSize</h4>
+Auto set its width and height by its inner text.
+> (`void`) ItemText:AutoSize()
+
+* <h4 id="LuaItemText_SetCenterEachLine">SetCenterEachLine</h4>
+Set whether to keep center of each line in this text while drawing.
+> (`void`) ItemText:SetCenterEachLine(`bool` bCenter)
+
+* <h4 id="LuaItemText_IsCenterEachLine">IsCenterEachLine</h4>
+Get whether to keep center of each line in this text while drawing.
+> (`bool` bCenter) ItemText:IsCenterEachLine()
+
+* <h4 id="LuaItemText_SetFontSpacing">SetFontSpacing</h4>
+Set the spacing between two characters.
+> (`void`) ItemText:SetFontSpacing(`number` nSpacing)
+
+* <h4 id="LuaItemText_GetFontSpacing">GetFontSpacing</h4>
+Get the spacing between two characters.
+> (`number` nSpacing) ItemText:GetFontSpacing()
+
+* <h4 id="LuaItemText_SetRichText">SetRichText</h4>
+Set whether this Text supports rich text.
+> (`void`) ItemText:SetRichText(`bool` bRichText)
+
+* <h4 id="LuaItemText_IsRichText">IsRichText</h4>
+Get whether this Text supports rich text.
+> (`bool` bRichText) ItemText:IsRichText()
+
+* <h4 id="LuaItemText_GetFontScale">GetFontScale</h4>
+Get scale.
+> (`number` fScale) ItemText:GetFontScale()
+
+* <h4 id="LuaItemText_SetFontScale">SetFontScale</h4>
+Get scale. Notice that [`:Scale`](#LuaItemNull_Scale) is unavailable on Text control because drawing font has a different way with drawing other controls.
+> (`void`) ItemText:SetFontScale(`number` fScale)
+
+* <h4 id="LuaItemText_SetFontID">SetFontID</h4>
+Set font id.
+> (`void`) ItemText:SetFontID(`number` nFontID)
+
+* <h4 id="LuaItemText_SetFontColor">SetFontColor</h4>
+Set font color.
+> (`void`) ItemText:SetFontColor(`number` nR, `number` nG, `number` nB)
+
+* <h4 id="LuaItemText_SetFontBoder">SetFontBorder</h4>
+Set font border.
+> (`void`) ItemText:SetFontBorder(`number` nBorderSize, `number` nR, `number` nG, `number` nB)
+
+* <h4 id="LuaItemText_SetFontShadow">SetFontShadow</h4>
+Set font shadow.
+> (`void`) ItemText:SetFontShadow(`number` nShadowOffset, `number` nR, `number` nG, `number` nB)
+
+* <h4 id="LuaItemText_GetFontID">GetFontID</h4>
+Get font id.
+> (`number` nFontID) ItemText:GetFontID()
+
+* <h4 id="LuaItemText_GetFontColor">GetFontColor</h4>
+Get font color.
+> (`number` nR, `number` nG, `number` nB) ItemText:GetFontColor()
+
+* <h4 id="LuaItemText_GetFontBoder">GetFontBoder</h4>
+Get font border.
+> (`number` nBorderSize, `number` nR, `number` nG, `number` nB) ItemText:GetFontBoder()
+
+* <h4 id="LuaItemText_GetFontProjection">GetFontProjection</h4>
+Get font shadow. (I don't know why this api is not named as `GetFontShadow`).
+> (`number` nShadowOffset, `number` nR, `number` nG, `number` nB) ItemText:GetFontProjection()
+
+* <h4 id="LuaItemText_GetTextExtent">GetTextExtent</h4>
+Get the width and height of the inner text from offset 0 to `nOffset`. If `nOffset` equals with -1, the size of all text will be returned.
+> (`number` nW, `number` nH) ItemText:GetTextExtent([`number` nOffset])
+
+* <h4 id="LuaItemText_GetTextPosExtent">GetTextPosExtent</h4>
+Get the character offset of its inner text from a position offset (`nOffset`). If `nOffset` is not given, the count of all text will be returned.
+> (`number` nOffset) ItemText:GetTextPosExtent([`number` nPosX])
