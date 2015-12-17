@@ -1,4 +1,9 @@
-# ItemNull
+## Indexing
+__Item__:
+[`ItemNull`](#LuaItemNull)
+[`ItemText`](#LuaItemText)
+
+# <h1 id="LuaItemNull">ItemNull</h1>
 ----------
 [`SetVisible`](#LuaItemNull_SetVisible)
 [`Show`](#LuaItemNull_Show)
@@ -263,7 +268,7 @@ Check if this Item is still vaild. Once the Item get destroyed, this api will re
 Get its base type. The value can be `Item` or `Wnd`.
 > (`string`) ItemNull:GetBaseType()
 
-# ItemText
+# <h1 id="LuaItemText">ItemText</h1>
 ----------
 [`SetFontScheme`](#LuaItemText_SetFontScheme)
 [`GetFontScheme`](#LuaItemText_GetFontScheme)
