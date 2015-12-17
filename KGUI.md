@@ -784,7 +784,7 @@ Get scale.
  ````
 
 * <h4 id="LuaItemText_SetFontScale">SetFontScale</h4>
-Get scale. Notice that [`:Scale`](#LuaItemNull_Scale) is unavailable on Text control because drawing font has a different way with drawing other controls.
+Get scale. Notice that [`:Scale`](#LuaItemNull_Scale) is unavailable on Text control because drawing font is in a different way with drawing other controls.
 
  > (`void`) ItemText:SetFontScale(`number` fScale)
 
