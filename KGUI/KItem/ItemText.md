@@ -6,6 +6,7 @@
 [`SetTime`](#LuaItemText_SetTime)
 [`SetNumber`](#LuaItemText_SetNumber)
 [`GetNumber`](#LuaItemText_GetNumber)
+[`SprintfText`](#LuaItemText_SprintfText)
 [`SetText`](#LuaItemText_SetText)
 [`GetText`](#LuaItemText_GetText)
 [`GetTextLen`](#LuaItemText_GetTextLen)
@@ -37,13 +38,15 @@
 [`GetFontProjection`](#LuaItemText_GetFontProjection)
 [`GetTextExtent`](#LuaItemText_GetTextExtent)
 [`GetTextPosExtent`](#LuaItemText_GetTextPosExtent)
+[`IsTextAutoTipEnabled`](#LuaItemText_IsTextAutoTipEnabled)
+[`SetTextAutoTipEnabled`](#LuaItemText_SetTextAutoTipEnabled)
 
 * <h4 id="LuaItemText_SetFontScheme">SetFontScheme</h4>
 Set text font scheme.<br>
 This api will load `pFontScheme` by `nFontID`, and then call this:<br>
 [`:SetFontID(pFontScheme->nFontID)`](#LuaItemText_SetFontID)<br>
-[`:SetFontColor(pFontScheme->GetFontColor())`](#LuaItemText_SetFontID)<br>
-[`:SetFontBorder(pFontScheme->nBorderSize, pFontScheme->GetBoderColor())`](#LuaItemText_SetFontID)<br>
+[`:SetFontColor(pFontScheme->GetFontColor())`](#LuaItemText_SetFontColor)<br>
+[`:SetFontBorder(pFontScheme->nBorderSize, pFontScheme->GetBoderColor())`](#LuaItemText_SetFontBoder)<br>
 [`:SetFontShadow(pFontScheme->nShadowOffset, pFontScheme->GetShadowColor())`](#LuaItemText_SetFontShadow)<br>
 [`:SetFontScale(pFontScheme->fScale)`](#LuaItemText_SetFontScale)<br>
 
@@ -92,7 +95,9 @@ Set text as pure number. Notice that this api is the same as [`:SetText(tostring
  ````
 
 * <h4 id="LuaItemText_GetNumber">GetNumber</h4>
-Get text as pure number. Notice that this api is the same as [`tonumber(:GetText())`](#LuaItemText_SetText). But this api is high performanced than `:SetText` cause there is no intermediate string when concat string.
+Parse current text as a number.
+
+This uses a simple scan (`%lf`). If the text is not a valid number, it returns `0`.
 
  > (`number` nNumber) ItemText:GetNumber()
 
@@ -103,10 +108,33 @@ Get text as pure number. Notice that this api is the same as [`tonumber(:GetText
 * <h4 id="LuaItemText_SetText">SetText</h4>
 Set display text.
 
- > (`void`) ItemText:SetText(`string` szText)
+ > (`void`) ItemText:SetText(`string` szText[, `bool` bKey])
+
+If `bKey` is `true`, `szText` is treated as a **global string key**, and the real text will be loaded from the global string table.
 
  ````lua
  ItemText:SetText("This is a text.")
+ ItemText:SetText("UI_TEXT_KEY", true)
+ ````
+
+* <h4 id="LuaItemText_SprintfText">SprintfText</h4>
+Format and set text using a printf-like format string.
+
+Supported conversion specifiers:
+
+- `%s` (string)
+- `%d` (integer), `%x`/`%X` (hex)
+- `%f` (number)
+- `%%` (literal `%`)
+
+The format string can contain width/precision parts (digits and `.`) between `%` and the specifier.
+
+ > (`void`) ItemText:SprintfText(`string` szFormat, ...)
+
+ ````lua
+ ItemText:SprintfText("%d/%d", 5, 100)
+ ItemText:SprintfText("HP:%d%%", 80)
+ ItemText:SprintfText("Name:%s  Score:%.2f", "Bob", 98.25)
  ````
 
 * <h4 id="LuaItemText_GetText">GetText</h4>
@@ -166,6 +194,8 @@ Get text horizontal alignment.
 * <h4 id="LuaItemText_SetRowSpacing">SetRowSpacing</h4>
 Set the spacing of two rows.
 
+Note: internally it is multiplied by `Station.GetUIScale()`.
+
  > (`void`) ItemText:SetRowSpacing(`number` nSpacing)
 
  ````lua
@@ -174,6 +204,8 @@ Set the spacing of two rows.
 
 * <h4 id="LuaItemText_GetRowSpacing">GetRowSpacing</h4>
 Get the spacing of two rows.
+
+Note: internally it is divided by `Station.GetUIScale()` before returning.
 
  > (`number` nSpacing) ItemText:GetRowSpacing()
 
@@ -238,6 +270,8 @@ Get whether to keep center of each line in this text while drawing.
 * <h4 id="LuaItemText_SetFontSpacing">SetFontSpacing</h4>
 Set the spacing between two characters.
 
+Note: internally it is multiplied by `Station.GetUIScale()`.
+
  > (`void`) ItemText:SetFontSpacing(`number` nSpacing)
 
  ````lua
@@ -246,6 +280,8 @@ Set the spacing between two characters.
 
 * <h4 id="LuaItemText_GetFontSpacing">GetFontSpacing</h4>
 Get the spacing between two characters.
+
+Note: internally it is divided by `Station.GetUIScale()` before returning.
 
  > (`number` nSpacing) ItemText:GetFontSpacing()
 
@@ -265,10 +301,10 @@ Set whether this Text supports rich text.
 * <h4 id="LuaItemText_IsRichText">IsRichText</h4>
 Get whether this Text supports rich text.
 
- > (`bool` bRichText) ItemText:IsRichText()
+ > (`number` nRichText) ItemText:IsRichText()
 
  ````lua
- local bRichText = ItemText:IsRichText()
+ local nRichText = ItemText:IsRichText() -- 0/1
  ````
 
 * <h4 id="LuaItemText_GetFontScale">GetFontScale</h4>
@@ -281,7 +317,7 @@ Get scale.
  ````
 
 * <h4 id="LuaItemText_SetFontScale">SetFontScale</h4>
-Get scale. Notice that [`:Scale`](#LuaItemNull_Scale) is unavailable on Text control because drawing font is in a different way with drawing other controls.
+Set scale. Notice that [`:Scale`](#LuaItemNull_Scale) is unavailable on Text control because drawing font is in a different way with drawing other controls.
 
  > (`void`) ItemText:SetFontScale(`number` fScale)
 
@@ -301,10 +337,16 @@ Set font id.
 * <h4 id="LuaItemText_SetFontColor">SetFontColor</h4>
 Set font color.
 
- > (`void`) ItemText:SetFontColor(`number` nR, `number` nG, `number` nB)
+Overloads:
+
+> * (`void`) ItemText:SetFontColor(`number` dwARGB)
+> * (`void`) ItemText:SetFontColor(`string` szColorSchemeName)
+> * (`void`) ItemText:SetFontColor(`number` nR, `number` nG, `number` nB)
 
  ````lua
  ItemText:SetFontColor(255, 255, 0)
+ ItemText:SetFontColor(0xFFFF0000) -- ARGB
+ ItemText:SetFontColor("WarningColor") -- from ColorScheme
  ````
 
 * <h4 id="LuaItemText_SetFontBoder">SetFontBorder</h4>
@@ -313,7 +355,7 @@ Set font border.
  > (`void`) ItemText:SetFontBorder(`number` nBorderSize, `number` nR, `number` nG, `number` nB)
 
  ````lua
- ItemText:SetFontColor(1, 255, 255, 0)
+ ItemText:SetFontBorder(1, 255, 255, 0)
  ````
 
 * <h4 id="LuaItemText_SetFontShadow">SetFontShadow</h4>
@@ -372,11 +414,42 @@ Get the width and height of the inner text from offset 0 to `nOffset`. If `nOffs
  ````
 
 * <h4 id="LuaItemText_GetTextPosExtent">GetTextPosExtent</h4>
-Get the character offset of its inner text from a position offset (`nOffset`). If `nOffset` is not given, the count of all text will be returned.
+Get the character offset at a given X position.
+
+If `nPosX` is omitted, it uses the control width.
 
  > (`number` nOffset) ItemText:GetTextPosExtent([`number` nPosX])
 
  ````lua
  local nCount = ItemText:GetTextPosExtent()     -- Get the count of all of the text.
  local nOffset = ItemText:GetTextPosExtent(80)  -- Get the count of the text from offset zero to offset 80 pixels.
+ ````
+
+* <h4 id="LuaItemText_IsTextAutoTipEnabled">IsTextAutoTipEnabled</h4>
+Get whether auto-tip for truncated text is enabled.
+
+ > (`bool` bEnabled) ItemText:IsTextAutoTipEnabled()
+
+ ````lua
+ local bEnabled = ItemText:IsTextAutoTipEnabled()
+ ````
+
+* <h4 id="LuaItemText_SetTextAutoTipEnabled">SetTextAutoTipEnabled</h4>
+Enable/disable auto-tip for truncated text.
+
+Overloads:
+
+> * (`void`) ItemText:SetTextAutoTipEnabled(`bool|number` bEnable)
+> * (`void`) ItemText:SetTextAutoTipEnabled(`bool|number` bEnable, `bool|number` bFormatText)
+> * (`void`) ItemText:SetTextAutoTipEnabled(`bool|number` bEnable, `bool|number` bFormatText, `bool|number` bClearMouseEnterEvent)
+
+Defaults:
+
+- `bFormatText = true`
+- `bClearMouseEnterEvent = false` (only useful when disabling)
+
+ ````lua
+ ItemText:SetTextAutoTipEnabled(true)
+ ItemText:SetTextAutoTipEnabled(true, true)
+ ItemText:SetTextAutoTipEnabled(false, true, true)
  ````

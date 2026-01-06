@@ -1,9 +1,18 @@
 # ItemNull
 
+Notes:
+
+- For position/size related APIs, Lua side uses **unscaled UI coordinates**. Internally values are multiplied by `Station.GetUIScale()`. Corresponding getters divide by UIScale before returning.
+
 [`SetVisible`](#LuaItemNull_SetVisible)
 [`Show`](#LuaItemNull_Show)
 [`Hide`](#LuaItemNull_Hide)
 [`PtInItem`](#LuaItemNull_PtInItem)
+[`IsMouseIn`](#LuaItemNull_IsMouseIn)
+[`SetMouseButtonStatusElement`](#LuaItemNull_SetMouseButtonStatusElement)
+[`ClearMouseButtonStatusElement`](#LuaItemNull_ClearMouseButtonStatusElement)
+[`SetHoverElement`](#LuaItemNull_SetHoverElement)
+[`ClearHoverElement`](#LuaItemNull_ClearHoverElement)
 [`SetRelX`](#LuaItemNull_SetRelX)
 [`SetRelY`](#LuaItemNull_SetRelY)
 [`GetRelX`](#LuaItemNull_GetRelX)
@@ -51,7 +60,18 @@
 [`IsLink`](#LuaItemNull_IsLink)
 [`GetLinkInfo`](#LuaItemNull_GetLinkInfo)
 [`SetLinkInfo`](#LuaItemNull_SetLinkInfo)
+[`SetTweenAni`](#LuaItemNull_SetTweenAni)
+[`GetTweenFile`](#LuaItemNull_GetTweenFile)
+[`SetTweenFile`](#LuaItemNull_SetTweenFile)
+[`GetTweenName`](#LuaItemNull_GetTweenName)
+[`SetTweenName`](#LuaItemNull_SetTweenName)
 [`GetAniParamID`](#LuaItemNull_GetAniParamID)
+[`SetPoint`](#LuaItemNull_SetPoint)
+[`SetBasicStatus`](#LuaItemNull_SetBasicStatus)
+[`ToGray`](#LuaItemNull_ToGray)
+[`ToNormal`](#LuaItemNull_ToNormal)
+[`IsGray`](#LuaItemNull_IsGray)
+[`Lookup`](#LuaItemNull_Lookup)
 [`IsValid`](#LuaItemNull_IsValid)
 [`__eq`](#LuaItemNull_Equal)
 [`GetBaseType`](#LuaItemNull_GetBaseType)
@@ -68,19 +88,27 @@ Set Item Visibility.
 * <h4 id="LuaItemNull_Show">Show</h4>
 Show Item, same as [`:SetVisible(true)`](#LuaItemNull_SetVisible).
 
- > (`void`) ItemNull:Show()
+ > (`void`) ItemNull:Show([`bool|number` bShow = true])
+
+If `bShow` is provided and is `false` (or `0`), it will **hide** the item.
 
  ````lua
  ItemNull:Show()
+ ItemNull:Show(true)
+ ItemNull:Show(false) -- hide
  ````
 
 * <h4 id="LuaItemNull_Hide">Hide</h4>
 Hide Item, same as [`:SetVisible(false)`](#LuaItemNull_SetVisible).
 
- > (`void`) ItemNull:Hide()
+ > (`void`) ItemNull:Hide([`bool|number` bHide = true])
+
+If `bHide` is provided and is `false` (or `0`), it will **show** the item.
 
  ````lua
  ItemNull:Hide()
+ ItemNull:Hide(true)
+ ItemNull:Hide(false) -- show
  ````
 
 * <h4 id="LuaItemNull_PtInItem">PtInItem</h4>
@@ -90,6 +118,51 @@ Judge if a given screen position is in this Item. Always use with `Cursor.GetPos
  ````lua
  local bIsInItem = ItemNull:PtInItem(600, 800)
  local bIsInItem = ItemNull:PtInItem(Cursor.GetPos())
+ ````
+
+* <h4 id="LuaItemNull_IsMouseIn">IsMouseIn</h4>
+Check whether mouse cursor is currently inside this item.
+
+ > (`bool` bIsIn) ItemNull:IsMouseIn()
+
+ ````lua
+ local bIsIn = ItemNull:IsMouseIn()
+ ````
+
+* <h4 id="LuaItemNull_SetMouseButtonStatusElement">SetMouseButtonStatusElement</h4>
+Set a UI element name used by the engine to reflect mouse button status on this item.
+
+ > (`void`) ItemNull:SetMouseButtonStatusElement(`string` szElementName)
+
+ ````lua
+ ItemNull:SetMouseButtonStatusElement("SomeUIElem")
+ ````
+
+* <h4 id="LuaItemNull_ClearMouseButtonStatusElement">ClearMouseButtonStatusElement</h4>
+Clear the mouse button status element binding.
+
+ > (`void`) ItemNull:ClearMouseButtonStatusElement()
+
+ ````lua
+ ItemNull:ClearMouseButtonStatusElement()
+ ````
+
+* <h4 id="LuaItemNull_SetHoverElement">SetHoverElement</h4>
+Enable hover response style and set the hover UI element name.
+
+ > (`void`) ItemNull:SetHoverElement(`string` szElementName)
+
+ ````lua
+ ItemNull:SetHoverElement("HoverElem")
+ ````
+
+* <h4 id="LuaItemNull_ClearHoverElement">ClearHoverElement</h4>
+Disable hover response style.
+
+ > (`void`) ItemNull:ClearHoverElement()
+
+ ````lua
+ ItemNull:ClearHoverElement()
  ````
 
 * <h4 id="LuaItemNull_SetRelX">SetRelX</h4>
@@ -176,7 +249,7 @@ Set Item's width.
 * <h4 id="LuaItemNull_SetH">SetH</h4>
 Set Item's height.
 
- > (`void`) ItemNull:SetH(`number` nW)
+ > (`void`) ItemNull:SetH(`number` nH)
 
  ````lua
  ItemNull:SetH(100)
@@ -219,7 +292,7 @@ Get Item's relative position. The union of [`:GetRelX`](#LuaItemNull_GetRelX) an
  ````
 
 * <h4 id="LuaItemNull_SetAbsPos">SetAbsPos</h4>
-Set Item's relative position. The union of [`:SetAbsX`](#LuaItemNull_SetAbsX) and [`:SetAbsY`](#LuaItemNull_SetAbsY).
+Set Item's absolute position. The union of [`:SetAbsX`](#LuaItemNull_SetAbsX) and [`:SetAbsY`](#LuaItemNull_SetAbsY).
 
  > (`void`) ItemNull:SetAbsPos(`number` nX, `number` nY)
 
@@ -228,7 +301,7 @@ Set Item's relative position. The union of [`:SetAbsX`](#LuaItemNull_SetAbsX) an
  ````
 
 * <h4 id="LuaItemNull_GetAbsPos">GetAbsPos</h4>
-Get Item's relative position. The union of [`:GetAbsX`](#LuaItemNull_GetAbsX) and [`:GetAbsY`](#LuaItemNull_GetAbsY).
+Get Item's absolute position. The union of [`:GetAbsX`](#LuaItemNull_GetAbsX) and [`:GetAbsY`](#LuaItemNull_GetAbsY).
 
  > (`number` nX, `number` nY) ItemNull:GetAbsPos()
 
@@ -257,7 +330,7 @@ Get Item's size. The union of [`:GetW`](#LuaItemNull_GetW) and [`:GetH`](#LuaIte
 * <h4 id="LuaItemNull_SetPosType">SetPosType</h4>
 Set Item's position type. See the enum of [`ITEM_POSITION`](#ITEM_POSITION).
 
- > (`void`) ItemNull:SetPosType()
+ > (`void`) ItemNull:SetPosType(`number` nPosType)
 
  ````lua
  ItemNull:SetPosType(ITEM_POSITION.RIGHT_BOTTOM)
@@ -302,19 +375,31 @@ Set Item's name.
 * <h4 id="LuaItemNull_SetTip">SetTip</h4>
 Set Item's tip. When mouse enter it, the tip will be shown.
 
- > (`void`) ItemNull:SetTip(`string` szTip)
+Overloads:
+
+> * (`void`) ItemNull:SetTip(`number` nTipIndex)
+> * (`void`) ItemNull:SetTip(`string` szTip, `number` nShowTipType[, `bool|number` bRichText[, `string` szBgPath[, `number` nBgFrame[, `number` nBgAlpha]]]])
+
+Notes:
+
+- If `nTipIndex < 0`, it will clear the tip (set to an invalid tip index).
 
  ````lua
- ItemNull:SetTip('<text>text="this is a tip"</text>')
+ ItemNull:SetTip(-1) -- clear
+ ItemNull:SetTip(123) -- set by existing tip index
+
+ -- create from text + show type
+ ItemNull:SetTip("this is a tip", 0)
+ ItemNull:SetTip('<text>text="rich tip"</text>', 0, true)
  ````
 
 * <h4 id="LuaItemNull_GetTip">GetTip</h4>
 Get Item's tip.
 
- > (`string` szTip) ItemNull:GetTip()
+ > (`string` szTip, `number` nShowTipType) ItemNull:GetTip()
 
  ````lua
- local szTip = ItemNull:GetTip()
+ local szTip, nShowTipType = ItemNull:GetTip()
  ````
 
 * <h4 id="LuaItemNull_SetUserData">SetUserData</h4>
@@ -347,10 +432,11 @@ Register an ui event so that this item is able to response the specified ui even
 * <h4 id="LuaItemNull_ClearEvent">ClearEvent</h4>
 Clear all ui event on this Item.
 
- > (`void`) ItemNull:ClearEvent()
+ > (`void`) ItemNull:ClearEvent([`bool|number` bForceClear = false])
 
  ````lua
  ItemNull:ClearEvent()
+ ItemNull:ClearEvent(true)
  ````
 
 * <h4 id="LuaItemNull_EnableScale">EnableScale</h4>
@@ -399,7 +485,11 @@ Get its alpha value (0 - 255).
  ````
 
 * <h4 id="LuaItemNull_GetParent">GetParent</h4>
-Get its parent node. It will return `null` if it has no parent.
+Get its parent node.
+
+If it has a parent item, returns that parent item.
+
+If it does not have a parent item (e.g. a root handle), it returns its owner window.
 
  > (`KGUI OBJECT` pParent) ItemNull:GetParent()
 
@@ -462,19 +552,191 @@ Get the tree path of this Item.
  local szWndTreePath, szHandleTreePath = ItemNull:GetTreePath()
  ````
 
-<!-- * <h4 id="LuaItemNull_SetAreaTestFile">SetAreaTestFile</h4> -->
+* <h4 id="LuaItemNull_SetAreaTestFile">SetAreaTestFile</h4>
+Set (or clear) the area test file used by the engine for hit-testing.
 
-<!-- * <h4 id="LuaItemNull_SetIntPos">SetIntPos</h4> -->
+ > (`void`) ItemNull:SetAreaTestFile([`string` szFile])
 
-<!-- * <h4 id="LuaItemNull_IsIntPos">IsIntPos</h4> -->
+ ````lua
+ ItemNull:SetAreaTestFile("ui/areatest/xxx.atf")
+ ItemNull:SetAreaTestFile() -- clear
+ ````
 
-<!-- * <h4 id="LuaItemNull_IsLink">IsLink</h4> -->
+* <h4 id="LuaItemNull_SetIntPos">SetIntPos</h4>
+Enable/disable integer-position mode.
 
-<!-- * <h4 id="LuaItemNull_GetLinkInfo">GetLinkInfo</h4> -->
+ > (`void`) ItemNull:SetIntPos(`bool|number` bIntPos)
 
-<!-- * <h4 id="LuaItemNull_SetLinkInfo">SetLinkInfo</h4> -->
+ ````lua
+ ItemNull:SetIntPos(true)
+ ````
 
-<!-- * <h4 id="LuaItemNull_GetAniParamID">GetAniParamID</h4> -->
+* <h4 id="LuaItemNull_IsIntPos">IsIntPos</h4>
+Get integer-position mode.
+
+ > (`bool` bIntPos) ItemNull:IsIntPos()
+
+ ````lua
+ local bIntPos = ItemNull:IsIntPos()
+ ````
+
+* <h4 id="LuaItemNull_IsLink">IsLink</h4>
+Check whether this item is a link item.
+
+ > (`bool` bIsLink) ItemNull:IsLink()
+
+ ````lua
+ local bIsLink = ItemNull:IsLink()
+ ````
+
+* <h4 id="LuaItemNull_GetLinkInfo">GetLinkInfo</h4>
+Get link info string.
+
+ > (`string` szLinkInfo) ItemNull:GetLinkInfo()
+
+ ````lua
+ local szLinkInfo = ItemNull:GetLinkInfo()
+ ````
+
+* <h4 id="LuaItemNull_SetLinkInfo">SetLinkInfo</h4>
+Set link info string.
+
+ > (`void`) ItemNull:SetLinkInfo(`string` szLinkInfo)
+
+ ````lua
+ ItemNull:SetLinkInfo("some_link_payload")
+ ````
+
+* <h4 id="LuaItemNull_SetTweenAni">SetTweenAni</h4>
+Set both tween file and tween name.
+
+ > (`void`) ItemNull:SetTweenAni(`string` szTweenFile, `string` szTweenName)
+
+ ````lua
+ ItemNull:SetTweenAni("ui/tween/some.tween", "FadeIn")
+ ````
+
+* <h4 id="LuaItemNull_GetTweenFile">GetTweenFile</h4>
+Get tween file path.
+
+If not set, this API returns no value.
+
+ > (`string|nil` szTweenFile) ItemNull:GetTweenFile()
+
+ ````lua
+ local szTweenFile = ItemNull:GetTweenFile()
+ ````
+
+* <h4 id="LuaItemNull_SetTweenFile">SetTweenFile</h4>
+Set tween file path.
+
+ > (`void`) ItemNull:SetTweenFile(`string` szTweenFile)
+
+ ````lua
+ ItemNull:SetTweenFile("ui/tween/some.tween")
+ ````
+
+* <h4 id="LuaItemNull_GetTweenName">GetTweenName</h4>
+Get tween name.
+
+If not set, this API returns no value.
+
+ > (`string|nil` szTweenName) ItemNull:GetTweenName()
+
+ ````lua
+ local szTweenName = ItemNull:GetTweenName()
+ ````
+
+* <h4 id="LuaItemNull_SetTweenName">SetTweenName</h4>
+Set tween name.
+
+ > (`void`) ItemNull:SetTweenName(`string` szTweenName)
+
+ ````lua
+ ItemNull:SetTweenName("FadeIn")
+ ````
+
+* <h4 id="LuaItemNull_GetAniParamID">GetAniParamID</h4>
+Get an opaque animation parameter id object (userdata).
+
+ > (`userdata` pAniParamID) ItemNull:GetAniParamID()
+
+ ````lua
+ local pAniParamID = ItemNull:GetAniParamID()
+ ````
+
+* <h4 id="LuaItemNull_SetPoint">SetPoint</h4>
+Anchor/position this item.
+
+Overloads:
+
+> * (`void`) ItemNull:SetPoint(`number` nX, `number` nY)
+> * (`void`) ItemNull:SetPoint(`string` szSrcSide, `number` nX, `number` nY, `string` szRelSide, `number` nOffsetX, `number` nOffsetY)
+> * (`void`) ItemNull:SetPoint(`string` szSrcSide, `number` nX, `number` nY, `KGUI Object|string` hRelUIOrWndTreePath, `string` szRelSide, `number` nOffsetX, `number` nOffsetY)
+
+Notes:
+
+- In the 6-arg overload (without `hRelUIOrWndTreePath`), the relative target defaults to the **root client area**.
+- `szSrcSide` / `szRelSide` uses the same side strings as window anchoring (e.g. `"TOPLEFT"`, `"CENTER"`, `"BOTTOMRIGHT"`, etc.).
+
+ ````lua
+ -- absolute
+ ItemNull:SetPoint(100, 200)
+
+ -- relative to root client area
+ ItemNull:SetPoint("TOPLEFT", 0, 0, "TOPLEFT", 10, 10)
+
+ -- relative to another UI object or a window treepath
+ ItemNull:SetPoint("CENTER", 0, 0, SomeOtherItem, "CENTER", 0, 0)
+ ItemNull:SetPoint("CENTER", 0, 0, "UI/Frame1", "CENTER", 0, 0)
+ ````
+
+* <h4 id="LuaItemNull_SetBasicStatus">SetBasicStatus</h4>
+Enable/disable a basic status flag on this item.
+
+ > (`void`) ItemNull:SetBasicStatus(`number` nStatus, `bool` bEnable)
+
+ ````lua
+ ItemNull:SetBasicStatus(0, true)
+ ````
+
+* <h4 id="LuaItemNull_ToGray">ToGray</h4>
+Apply gray effect.
+
+ > (`void`) ItemNull:ToGray()
+
+ ````lua
+ ItemNull:ToGray()
+ ````
+
+* <h4 id="LuaItemNull_ToNormal">ToNormal</h4>
+Remove gray effect.
+
+ > (`void`) ItemNull:ToNormal()
+
+ ````lua
+ ItemNull:ToNormal()
+ ````
+
+* <h4 id="LuaItemNull_IsGray">IsGray</h4>
+Check if gray effect is applied.
+
+ > (`bool` bGray) ItemNull:IsGray()
+
+ ````lua
+ local bGray = ItemNull:IsGray()
+ ````
+
+* <h4 id="LuaItemNull_Lookup">Lookup</h4>
+Lookup a descendant item by tree path (relative to this item).
+
+Returns the found item object, or nothing if not found.
+
+ > (`KGUI Object|nil` hItem) ItemNull:Lookup(`string` szTreePath)
+
+ ````lua
+ local hItem = ItemNull:Lookup("Child1/Child2")
+ ````
 
 * <h4 id="LuaItemNull_IsValid">IsValid</h4>
 Check if this Item is still vaild. Once the Item get destroyed, this api will return `false`.
