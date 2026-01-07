@@ -23,64 +23,96 @@ Notes:
 
 * <h4 id="LuaNewScrollBar_Enable">Enable</h4>
 
+Enables or disables the scrollbar control.
+
  > (`void`) WndNewScrollBar:Enable(`bool|number` bEnable)
 
 * <h4 id="LuaNewScrollBar_EnableScroll">EnableScroll</h4>
+
+Enables or disables scrolling behavior.
 
  > (`void`) WndNewScrollBar:EnableScroll(`bool|number` bEnable)
 
 * <h4 id="LuaNewScrollBar_SetScrollPos">SetScrollPos</h4>
 
- > (`void`) WndNewScrollBar:SetScrollPos(`number` nPos)
+Sets current scroll position. Optional `eFireType` controls event firing behavior.
+
+ > (`void`) WndNewScrollBar:SetScrollPos(`number` nPos[, `number` eFireType])
 
 * <h4 id="LuaNewScrollBar_GetScrollPos">GetScrollPos</h4>
+
+Gets current scroll position.
 
  > (`number` nPos) WndNewScrollBar:GetScrollPos()
 
 * <h4 id="LuaNewScrollBar_SetStepCount">SetStepCount</h4>
 
- > (`void`) WndNewScrollBar:SetStepCount(`number` nCount)
+Sets total step count. Optional `eFireType` controls event firing behavior.
+
+ > (`void`) WndNewScrollBar:SetStepCount(`number` nCount[, `number` eFireType])
 
 * <h4 id="LuaNewScrollBar_GetStepCount">GetStepCount</h4>
+
+Gets current step count.
 
  > (`number` nCount) WndNewScrollBar:GetStepCount()
 
 * <h4 id="LuaNewScrollBar_SetPageStepCount">SetPageStepCount</h4>
 
+Sets page step count (how much to scroll per page action).
+
  > (`void`) WndNewScrollBar:SetPageStepCount(`number` nCount)
 
 * <h4 id="LuaNewScrollBar_GetPageStepCount">GetPageStepCount</h4>
+
+Gets page step count.
 
  > (`number` nCount) WndNewScrollBar:GetPageStepCount()
 
 * <h4 id="LuaNewScrollBar_ScrollPrev">ScrollPrev</h4>
 
- > (`void`) WndNewScrollBar:ScrollPrev()
+Scrolls towards previous direction by `nStepCount` steps.
+
+ > (`void`) WndNewScrollBar:ScrollPrev([`number` nStepCount = 1])
 
 * <h4 id="LuaNewScrollBar_ScrollNext">ScrollNext</h4>
 
- > (`void`) WndNewScrollBar:ScrollNext()
+Scrolls towards next direction by `nStepCount` steps.
+
+ > (`void`) WndNewScrollBar:ScrollNext([`number` nStepCount = 1])
 
 * <h4 id="LuaNewScrollBar_ScrollPagePrev">ScrollPagePrev</h4>
+
+Scrolls one page towards previous direction.
 
  > (`void`) WndNewScrollBar:ScrollPagePrev()
 
 * <h4 id="LuaNewScrollBar_ScrollPageNext">ScrollPageNext</h4>
 
+Scrolls one page towards next direction.
+
  > (`void`) WndNewScrollBar:ScrollPageNext()
 
 * <h4 id="LuaNewScrollBar_ScrollHome">ScrollHome</h4>
+
+Scrolls to the home (start) position.
 
  > (`void`) WndNewScrollBar:ScrollHome()
 
 * <h4 id="LuaNewScrollBar_ScrollEnd">ScrollEnd</h4>
 
+Scrolls to the end position.
+
  > (`void`) WndNewScrollBar:ScrollEnd()
 
 * <h4 id="LuaNewScrollBar_SetDragStep">SetDragStep</h4>
 
- > (`void`) WndNewScrollBar:SetDragStep(`number` nStep)
+Sets whether dragging snaps by step.
+
+ > (`void`) WndNewScrollBar:SetDragStep(`bool` bDragStep)
 
 * <h4 id="LuaNewScrollBar_EnableFreeOpt">EnableFreeOpt</h4>
 
- > (`void`) WndNewScrollBar:EnableFreeOpt(`bool|number` bEnable)
+Enables or disables free operation mode.
+
+ > (`void`) WndNewScrollBar:EnableFreeOpt(`bool` bEnable)

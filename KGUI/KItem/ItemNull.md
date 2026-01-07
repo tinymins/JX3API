@@ -73,6 +73,7 @@ Notes:
 [`IsGray`](#LuaItemNull_IsGray)
 [`Lookup`](#LuaItemNull_Lookup)
 [`IsValid`](#LuaItemNull_IsValid)
+[`__newindex`](#LuaItemNull_NewIndex)
 [`__eq`](#LuaItemNull_Equal)
 [`GetBaseType`](#LuaItemNull_GetBaseType)
 
@@ -747,10 +748,36 @@ Check if this Item is still vaild. Once the Item get destroyed, this api will re
  local bValid = ItemNull:IsValid()
  ````
 
-<!-- * <h4 id="LuaItemNull_Equal">__eq</h4> -->
+* <h4 id="LuaItemNull_NewIndex">__newindex</h4>
+Metamethod used when assigning a custom field on the ItemNull object (for example `ItemNull.someField = value`).
+
+When enabled, the engine stores a registry reference to the Lua-side object table on the first assignment, then performs a `rawset` to save the field.
+
+Note: in current source, `__newindex` registration is commented out in the ItemNull metatable, so this metamethod may not be active.
+
+ > (`void`) ItemNull:__newindex(`string|number` key, `bool|number|string|table|userdata|nil` value)
+
+ ````lua
+ ItemNull.someField = 123
+ ItemNull["anotherField"] = "abc"
+ ItemNull.someField = nil -- delete
+ ````
+
+* <h4 id="LuaItemNull_Equal">__eq</h4>
+Metamethod used by `==` to compare two ItemNull objects.
+
+Returns `true` only when both operands refer to the same underlying engine object pointer (and the pointer is not null).
+
+ > (`bool` bEqual) ItemNull:__eq(`ItemNull` other)
+
+ ````lua
+ if ItemNullA == ItemNullB then
+	 -- same item
+ end
+ ````
 
 * <h4 id="LuaItemNull_GetBaseType">GetBaseType</h4>
-Get its base type. The value can be `Item` or `Wnd`.
+Get its base type. For Item* objects this always returns `Item`.
 
  > (`string` szBaseType) ItemNull:GetBaseType()
 

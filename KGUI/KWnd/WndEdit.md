@@ -58,6 +58,8 @@ Notes:
 
 * <h4 id="LuaEdit_SetPadding">SetPadding</h4>
 
+Sets edit padding (supports 1/2/4-argument forms).
+
  > (`void`) WndEdit:SetPadding(`number` all)
 
  > (`void`) WndEdit:SetPadding(`number` topBottom, `number` leftRight)
@@ -65,6 +67,8 @@ Notes:
  > (`void`) WndEdit:SetPadding(`number` top, `number` right, `number` bottom, `number` left)
 
 * <h4 id="LuaEdit_GetPadding">GetPadding</h4>
+
+Gets edit padding.
 
  > (`number` top, `number` right, `number` bottom, `number` left) WndEdit:GetPadding()
 
@@ -78,21 +82,31 @@ Notes:
 
 * <h4 id="LuaEdit_SetText">SetText</h4>
 
+Sets the text content. Optional `eFireType` controls event firing behavior.
+
  > (`void`) WndEdit:SetText(`string` szText[, `number` eFireType])
 
 * <h4 id="LuaEdit_GetText">GetText</h4>
+
+Gets the current text content.
 
  > (`string` szText) WndEdit:GetText()
 
 * <h4 id="LuaEdit_GetTextLength">GetTextLength</h4>
 
+Gets text length. Optional `bMultiByte` controls multibyte counting.
+
  > (`number` nLen) WndEdit:GetTextLength([`bool|number` bMultiByte = true])
 
 * <h4 id="LuaEdit_GetImageCount">GetImageCount</h4>
 
+Gets the number of embedded images/objects.
+
  > (`number` nCount) WndEdit:GetImageCount()
 
 * <h4 id="LuaEdit_ClearText">ClearText</h4>
+
+Clears the text content. Optional `eFireType` controls event firing behavior.
 
  > (`void`) WndEdit:ClearText([`number` eFireType])
 
@@ -120,77 +134,115 @@ Notes:
 
 * <h4 id="LuaEdit_SetType">SetType</h4>
 
+Sets the edit control type.
+
  > (`void`) WndEdit:SetType(`number` nType)
 
 * <h4 id="LuaEdit_SetLimit">SetLimit</h4>
+
+Sets the input length limit.
 
  > (`void`) WndEdit:SetLimit(`number` nLimit)
 
 * <h4 id="LuaEdit_GetLimit">GetLimit</h4>
 
+Gets the input length limit.
+
  > (`number` nLimit) WndEdit:GetLimit()
 
 * <h4 id="LuaEdit_SetLimitMultiByte">SetLimitMultiByte</h4>
+
+Sets whether the limit uses multibyte semantics.
 
  > (`void`) WndEdit:SetLimitMultiByte(`bool|number` bMultiByte)
 
 * <h4 id="LuaEdit_IsLimitMultiByte">IsLimitMultiByte</h4>
 
+Returns whether the limit uses multibyte semantics.
+
  > (`bool` bMultiByte) WndEdit:IsLimitMultiByte()
 
 * <h4 id="LuaEdit_SelectAll">SelectAll</h4>
+
+Selects all text.
 
  > (`void`) WndEdit:SelectAll()
 
 * <h4 id="LuaEdit_CancelSelect">CancelSelect</h4>
 
+Cancels the current selection.
+
  > (`void`) WndEdit:CancelSelect()
 
 * <h4 id="LuaEdit_SetFontScheme">SetFontScheme</h4>
+
+Sets the font scheme.
 
  > (`void`) WndEdit:SetFontScheme(`number` nFontScheme)
 
 * <h4 id="LuaEdit_GetFontScheme">GetFontScheme</h4>
 
+Gets the font scheme.
+
  > (`number` nFontScheme) WndEdit:GetFontScheme()
 
 * <h4 id="LuaEdit_SetFontColor">SetFontColor</h4>
+
+Sets font color.
 
  > (`void`) WndEdit:SetFontColor(`number` r, `number` g, `number` b)
 
 * <h4 id="LuaEdit_InsertText">InsertText</h4>
 
+Inserts text at the current caret position. Optional `eFireType` controls event firing behavior.
+
  > (`void`) WndEdit:InsertText(`string` szText[, `number` eFireType])
 
 * <h4 id="LuaEdit_Backspace">Backspace</h4>
+
+Deletes backward (backspace) at the caret.
 
  > (`void`) WndEdit:Backspace()
 
 * <h4 id="LuaEdit_SetMultiLine">SetMultiLine</h4>
 
+Enables or disables multiline mode.
+
  > (`void`) WndEdit:SetMultiLine(`bool|number` bMultiLine)
 
 * <h4 id="LuaEdit_IsMultiLine">IsMultiLine</h4>
+
+Returns whether multiline mode is enabled.
 
  > (`bool` bMultiLine) WndEdit:IsMultiLine()
 
 * <h4 id="LuaEdit_SetFontSpacing">SetFontSpacing</h4>
 
+Sets character spacing.
+
  > (`void`) WndEdit:SetFontSpacing(`number` fSpacing)
 
 * <h4 id="LuaEdit_SetRowSpacing">SetRowSpacing</h4>
+
+Sets row/line spacing.
 
  > (`void`) WndEdit:SetRowSpacing(`number` fSpacing)
 
 * <h4 id="LuaEdit_SetFocusBgColor">SetFocusBgColor</h4>
 
+Sets background color when focused.
+
  > (`void`) WndEdit:SetFocusBgColor(`number` r, `number` g, `number` b)
 
 * <h4 id="LuaEdit_SetSelectBgColor">SetSelectBgColor</h4>
 
+Sets selection background color.
+
  > (`void`) WndEdit:SetSelectBgColor(`number` r, `number` g, `number` b)
 
 * <h4 id="LuaEdit_SetSelectFontScheme">SetSelectFontScheme</h4>
+
+Sets the font scheme used for selected text.
 
  > (`void`) WndEdit:SetSelectFontScheme(`number` nFontScheme)
 
@@ -204,80 +256,120 @@ Notes:
 
 * <h4 id="LuaEdit_SetCaretPos">SetCaretPos</h4>
 
+Sets caret position. Optional `nAfterFlag` controls placement behavior.
+
  > (`void`) WndEdit:SetCaretPos(`number` dwPos[, `number` nAfterFlag = 0])
 
 * <h4 id="LuaEdit_GetCaretPos">GetCaretPos</h4>
+
+Gets current caret position.
 
  > (`number` dwPos) WndEdit:GetCaretPos()
 
 * <h4 id="LuaEdit_SetPlaceholderRelX">SetPlaceholderRelX</h4>
 
+Sets placeholder relative X.
+
  > (`void`) WndEdit:SetPlaceholderRelX(`number` x)
 
 * <h4 id="LuaEdit_GetPlaceholderRelX">GetPlaceholderRelX</h4>
+
+Gets placeholder relative X.
 
  > (`number` x) WndEdit:GetPlaceholderRelX()
 
 * <h4 id="LuaEdit_SetPlaceholderRelY">SetPlaceholderRelY</h4>
 
+Sets placeholder relative Y.
+
  > (`void`) WndEdit:SetPlaceholderRelY(`number` y)
 
 * <h4 id="LuaEdit_GetPlaceholderRelY">GetPlaceholderRelY</h4>
+
+Gets placeholder relative Y.
 
  > (`number` y) WndEdit:GetPlaceholderRelY()
 
 * <h4 id="LuaEdit_SetPlaceholderText">SetPlaceholderText</h4>
 
+Sets placeholder text.
+
  > (`void`) WndEdit:SetPlaceholderText(`string` szText)
 
 * <h4 id="LuaEdit_GetPlaceholderText">GetPlaceholderText</h4>
+
+Gets placeholder text.
 
  > (`string` szText) WndEdit:GetPlaceholderText()
 
 * <h4 id="LuaEdit_SetPlaceholderFontScheme">SetPlaceholderFontScheme</h4>
 
+Sets the placeholder font scheme.
+
  > (`void`) WndEdit:SetPlaceholderFontScheme(`number` nFontScheme)
 
 * <h4 id="LuaEdit_GetPlaceholderFontScheme">GetPlaceholderFontScheme</h4>
+
+Gets the placeholder font scheme.
 
  > (`number` nFontScheme) WndEdit:GetPlaceholderFontScheme()
 
 * <h4 id="LuaEdit_SetPlaceholderFontColor">SetPlaceholderFontColor</h4>
 
+Sets placeholder font color.
+
  > (`void`) WndEdit:SetPlaceholderFontColor(`number` r, `number` g, `number` b)
 
 * <h4 id="LuaEdit_GetPlaceholderFontColor">GetPlaceholderFontColor</h4>
+
+Gets placeholder font color.
 
  > (`number` r, `number` g, `number` b) WndEdit:GetPlaceholderFontColor()
 
 * <h4 id="LuaEdit_SetPlaceholderVAlign">SetPlaceholderVAlign</h4>
 
+Sets placeholder vertical alignment.
+
  > (`void`) WndEdit:SetPlaceholderVAlign(`number` nAlign)
 
 * <h4 id="LuaEdit_GetPlaceholderVAlign">GetPlaceholderVAlign</h4>
+
+Gets placeholder vertical alignment.
 
  > (`number` nAlign) WndEdit:GetPlaceholderVAlign()
 
 * <h4 id="LuaEdit_SetPlaceholderHAlign">SetPlaceholderHAlign</h4>
 
+Sets placeholder horizontal alignment.
+
  > (`void`) WndEdit:SetPlaceholderHAlign(`number` nAlign)
 
 * <h4 id="LuaEdit_GetPlaceholderHAlign">GetPlaceholderHAlign</h4>
+
+Gets placeholder horizontal alignment.
 
  > (`number` nAlign) WndEdit:GetPlaceholderHAlign()
 
 * <h4 id="LuaEdit_SetPlaceholderAlpha">SetPlaceholderAlpha</h4>
 
+Sets placeholder alpha.
+
  > (`void`) WndEdit:SetPlaceholderAlpha(`number` nAlpha)
 
 * <h4 id="LuaEdit_GetPlaceholderAlpha">GetPlaceholderAlpha</h4>
+
+Gets placeholder alpha.
 
  > (`number` nAlpha) WndEdit:GetPlaceholderAlpha()
 
 * <h4 id="LuaEdit_SetStatus">SetStatus</h4>
 
+Enables or disables a specific status flag on the edit.
+
  > (`void`) WndEdit:SetStatus(`number` dwStatus, `bool` bEnable)
 
 * <h4 id="LuaEdit_IsStatus">IsStatus</h4>
+
+Checks whether a specific status flag is enabled.
 
  > (`bool` bEnable) WndEdit:IsStatus(`number` dwStatus)

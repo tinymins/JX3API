@@ -1,8 +1,6 @@
 # WndPage
 
-`WndPage`'s metatable is registered as: `KScriptLoader::RegisterMetaTable(L, "WndPage", s_aWndWindowMetaTable, s_aWndWindowMetaTable, ...)`.
-
-That means it only has the base `WndWindow` APIs (no additional extended APIs).
+It only has the base `WndWindow` APIs (no additional extended APIs).
 
 Please refer to:
 

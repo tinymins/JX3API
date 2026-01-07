@@ -13,24 +13,36 @@ Notes:
 
 * <h4 id="LuaScroll_GetScrollVerStepSize">GetScrollVerStepSize</h4>
 
+Gets vertical scroll step size. Return value is scaled back by `UIScale`.
+
  > (`number` fStep) WndScroll:GetScrollVerStepSize()
 
 * <h4 id="LuaScroll_SetScrollVerStepSize">SetScrollVerStepSize</h4>
 
- > (`void`) WndScroll:SetScrollVerStepSize(`number` fStep)
+Sets vertical scroll step size. Input is multiplied by `UIScale`; optional `bDontFormat` controls whether to reformat.
+
+ > (`void`) WndScroll:SetScrollVerStepSize(`number` fStep[, `bool|number` bDontFormat = false])
 
 * <h4 id="LuaScroll_GetScrollHorStepSize">GetScrollHorStepSize</h4>
+
+Gets horizontal scroll step size. Return value is scaled back by `UIScale`.
 
  > (`number` fStep) WndScroll:GetScrollHorStepSize()
 
 * <h4 id="LuaScroll_SetScrollHorStepSize">SetScrollHorStepSize</h4>
 
- > (`void`) WndScroll:SetScrollHorStepSize(`number` fStep)
+Sets horizontal scroll step size. Input is multiplied by `UIScale`; optional `bDontFormat` controls whether to reformat.
+
+ > (`void`) WndScroll:SetScrollHorStepSize(`number` fStep[, `bool|number` bDontFormat = false])
 
 * <h4 id="LuaScroll_GetEntryScrollPos">GetEntryScrollPos</h4>
 
- > (`number` nPos) WndScroll:GetEntryScrollPos()
+Gets the scroll position for a specific entry window/item; optional `bVertical` chooses vertical or horizontal behavior.
+
+ > (`number` nPos) WndScroll:GetEntryScrollPos(`WndWindow|ItemNull` entry[, `bool|number` bVertical = true])
 
 * <h4 id="LuaScroll_ScrollToEntry">ScrollToEntry</h4>
 
- > (`void`) WndScroll:ScrollToEntry(`number` nPos)
+Scrolls to a specific entry (by index or userdata). Optional `bVertical` chooses vertical or horizontal behavior.
+
+ > (`void`) WndScroll:ScrollToEntry(`number|table` entryOrIndex, `bool|number` bMinimalMoving[, `bool|number` bVertical = true])

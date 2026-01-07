@@ -129,6 +129,8 @@ Supported conversion specifiers:
 
 The format string can contain width/precision parts (digits and `.`) between `%` and the specifier.
 
+Each conversion specifier consumes one Lua argument from `...`. If the argument type does not match the specifier, or the format string is invalid, it errors and returns nothing. Extra arguments (not consumed by the format string) are ignored.
+
  > (`void`) ItemText:SprintfText(`string` szFormat, ...)
 
  ````lua

@@ -85,9 +85,13 @@ Get box index.
 * <h4 id="LuaItemBox_SetObject">SetObject</h4>
 Set object type and its data.
 
-The object data is a fixed-size array in engine; pass as many numeric values as needed.
+The object data is a fixed-size array in engine (size is `MAX_BOX_OBJECT_DATA_COUNT = 6`).
 
- > (`void`) ItemBox:SetObject(`number` nObjectType[, `number` data1[, `number` data2[, ...]]])
+The binding reads up to `MAX_BOX_OBJECT_DATA_COUNT` numeric values starting from the 2nd data argument; extra arguments are ignored.
+
+If you need deterministic data for all slots, pass all values explicitly.
+
+ > (`void`) ItemBox:SetObject(`number` nObjectType[, `number` data1[, `number` data2[, `number` data3[, `number` data4[, `number` data5[, `number` data6]]]]]])
 
  ````lua
  ItemBox:SetObject(0)
@@ -97,9 +101,9 @@ The object data is a fixed-size array in engine; pass as many numeric values as 
 * <h4 id="LuaItemBox_GetObject">GetObject</h4>
 Get object type and its data.
 
-Returns `nObjectType` plus a fixed number of numeric data values.
+Returns `nObjectType` plus `MAX_BOX_OBJECT_DATA_COUNT` numeric data values (`data1`..`data6`).
 
- > (`number` nObjectType, `number` data1, `number` data2, ...) ItemBox:GetObject()
+ > (`number` nObjectType, `number` data1, `number` data2, `number` data3, `number` data4, `number` data5, `number` data6) ItemBox:GetObject()
 
  ````lua
  local nObjectType, d1, d2 = ItemBox:GetObject()
@@ -131,7 +135,9 @@ Get object data.
 - With no index: returns all data values.
 - With `nIndex`: returns a single data value (index is **1-based**).
 
- > (`number` data1, `number` data2, ...) ItemBox:GetObjectData()
+When called with no index, it always returns exactly `MAX_BOX_OBJECT_DATA_COUNT` values (`data1`..`data6`).
+
+ > (`number` data1, `number` data2, `number` data3, `number` data4, `number` data5, `number` data6) ItemBox:GetObjectData()
 
  > (`number` nValue) ItemBox:GetObjectData(`number` nIndex)
 
