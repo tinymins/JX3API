@@ -1,0 +1,530 @@
+# 常量
+
+游戏导出给插件 API 使用的常量和枚举。
+
+---
+
+## PLAYER_TALK_CHANNEL {#PLAYER_TALK_CHANNEL}
+
+聊天频道类型常量。
+
+| 常量 | 描述 |
+|------|------|
+| `PLAYER_TALK_CHANNEL.INVALID` | 无效频道 |
+| `PLAYER_TALK_CHANNEL.NEARBY` | 附近/本地聊天 |
+| `PLAYER_TALK_CHANNEL.TEAM` | 队伍聊天 |
+| `PLAYER_TALK_CHANNEL.RAID` | 团队聊天 |
+| `PLAYER_TALK_CHANNEL.BATTLE_FIELD` | 战场聊天 |
+| `PLAYER_TALK_CHANNEL.SENCE` | 场景/地图聊天 |
+| `PLAYER_TALK_CHANNEL.WHISPER` | 密语/私聊 |
+| `PLAYER_TALK_CHANNEL.FACE` | 面对面聊天 |
+| `PLAYER_TALK_CHANNEL.GM_MESSAGE` | GM 消息 |
+| `PLAYER_TALK_CHANNEL.LOCAL_SYS` | 本地系统消息 |
+| `PLAYER_TALK_CHANNEL.GLOBAL_SYS` | 全局系统消息 |
+| `PLAYER_TALK_CHANNEL.GM_ANNOUNCE` | GM 公告 |
+| `PLAYER_TALK_CHANNEL.TO_TONG_GM_ANNOUNCE` | 发给帮会的 GM 公告 |
+| `PLAYER_TALK_CHANNEL.TO_PLAYER_GM_ANNOUNCE` | 发给玩家的 GM 公告 |
+| `PLAYER_TALK_CHANNEL.NPC_NEARBY` | NPC 附近聊天 |
+| `PLAYER_TALK_CHANNEL.NPC_PARTY` | NPC 队伍聊天 |
+| `PLAYER_TALK_CHANNEL.NPC_SENCE` | NPC 场景聊天 |
+| `PLAYER_TALK_CHANNEL.NPC_WHISPER` | NPC 密语 |
+| `PLAYER_TALK_CHANNEL.NPC_SAY_TO` | NPC 对目标说 |
+| `PLAYER_TALK_CHANNEL.NPC_YELL_TO` | NPC 对目标喊 |
+| `PLAYER_TALK_CHANNEL.NPC_FACE` | NPC 面对面聊天 |
+| `PLAYER_TALK_CHANNEL.NPC_SAY_TO_ID` | NPC 用语句 ID 对目标说 |
+| `PLAYER_TALK_CHANNEL.NPC_SAY_TO_CAMP` | NPC 对阵营说 |
+| `PLAYER_TALK_CHANNEL.TONG` | 帮会聊天 |
+| `PLAYER_TALK_CHANNEL.TONG_ALLIANCE` | 帮会联盟聊天 |
+| `PLAYER_TALK_CHANNEL.TONG_SYS` | 帮会系统消息 |
+| `PLAYER_TALK_CHANNEL.WORLD` | 世界聊天 |
+| `PLAYER_TALK_CHANNEL.FORCE` | 门派聊天 |
+| `PLAYER_TALK_CHANNEL.CAMP` | 阵营聊天 |
+| `PLAYER_TALK_CHANNEL.MENTOR` | 师徒聊天 |
+| `PLAYER_TALK_CHANNEL.FRIENDS` | 好友聊天 |
+| `PLAYER_TALK_CHANNEL.DEBUG_THREAT` | 调试威胁 |
+| `PLAYER_TALK_CHANNEL.IDENTITY` | 身份聊天 |
+| `PLAYER_TALK_CHANNEL.BULLET_SCREEN` | 弹幕 |
+| `PLAYER_TALK_CHANNEL.JJC_BULLET_SCREEN` | 竞技场弹幕 |
+| `PLAYER_TALK_CHANNEL.CAMP_FIGHT_BULLET_SCREEN` | 阵营战弹幕 |
+| `PLAYER_TALK_CHANNEL.BATTLE_FIELD_SIDE` | 战场阵营聊天 |
+| `PLAYER_TALK_CHANNEL.SYSTEM_NOTICE` | 系统通知 |
+
+---
+
+## GLOBAL {#GLOBAL}
+
+全局游戏常量。
+
+| 常量 | 描述 |
+|------|------|
+| `GLOBAL.GAME_FPS` | 游戏每秒帧数 |
+| `GLOBAL.DIRECTION_COUNT` | 方向数量 |
+| `GLOBAL.CELL_LENGTH` | 格子长度 |
+| `GLOBAL.LOGICAL_CELL_CM_LENGTH` | 逻辑格子长度（厘米） |
+| `GLOBAL.INVALID_PARTY_ID` | 无效队伍 ID |
+| `GLOBAL.INVALID_SKILL_ID` | 无效技能 ID |
+| `GLOBAL.MOVE_DEST_RANGE` | 移动目标范围 |
+| `GLOBAL.CURRENT_ITEM_VERSION` | 当前物品版本 |
+| `GLOBAL.MAX_BANK_PACKAGE_COUNT` | 最大仓库包裹数 |
+| `GLOBAL.START_QUEST_DELAY` | 任务开始延迟 |
+| `GLOBAL.AI_USER_EVENT` | AI 用户事件 |
+| `GLOBAL.AI_USER_ACTION` | AI 用户动作 |
+| `GLOBAL.COIN_PRICE_DISCOUNT_BASE` | 通宝商城价格折扣基数 |
+| `GLOBAL.HORSE_PACKAGE_SIZE` | 马匹包裹大小 |
+| `GLOBAL.MAX_RARE_HORSE_COUNT` | 最大稀有马匹数量 |
+
+---
+
+## ITEM_GENRE {#ITEM_GENRE}
+
+物品种类常量。
+
+| 常量 | 描述 |
+|------|------|
+| `ITEM_GENRE.EQUIPMENT` | 装备 |
+| `ITEM_GENRE.POTION` | 药品 |
+| `ITEM_GENRE.TASK_ITEM` | 任务道具 |
+| `ITEM_GENRE.MATERIAL` | 材料 |
+| `ITEM_GENRE.BOOK` | 书籍 |
+| `ITEM_GENRE.DESIGNATION` | 称号道具 |
+| `ITEM_GENRE.MOUNT_ITEM` | 镶嵌道具 |
+| `ITEM_GENRE.ENCHANT_ITEM` | 附魔道具 |
+| `ITEM_GENRE.BOX` | 宝箱 |
+| `ITEM_GENRE.BOX_KEY` | 宝箱钥匙 |
+| `ITEM_GENRE.DIAMOND` | 五行石 |
+| `ITEM_GENRE.COLOR_DIAMOND` | 多彩石 |
+| `ITEM_GENRE.CUB` | 可驯养的幼崽 |
+| `ITEM_GENRE.FODDER` | 饲料 |
+| `ITEM_GENRE.FOOD` | 食物 |
+| `ITEM_GENRE.EMOTION` | 表情道具 |
+| `ITEM_GENRE.EXTERIOR_COLLECTION_PIECE` | 外观收集碎片 |
+| `ITEM_GENRE.COIN_SHOP_QUANTITY_LIMIT_ITEM` | 通宝商城限量道具 |
+| `ITEM_GENRE.ACTION` | 动作道具 |
+| `ITEM_GENRE.HOMELAND` | 家园道具 |
+| `ITEM_GENRE.TOTAL` | 总数 |
+
+---
+
+## EQUIPMENT_SUB {#EQUIPMENT_SUB}
+
+装备子类型常量。
+
+| 常量 | 描述 |
+|------|------|
+| `EQUIPMENT_SUB.MELEE_WEAPON` | 近战武器 |
+| `EQUIPMENT_SUB.RANGE_WEAPON` | 远程武器 |
+| `EQUIPMENT_SUB.CHEST` | 上衣 |
+| `EQUIPMENT_SUB.HELM` | 头盔 |
+| `EQUIPMENT_SUB.AMULET` | 项链 |
+| `EQUIPMENT_SUB.RING` | 戒指 |
+| `EQUIPMENT_SUB.WAIST` | 腰带 |
+| `EQUIPMENT_SUB.PENDANT` | 腰缀 |
+| `EQUIPMENT_SUB.PANTS` | 裤子 |
+| `EQUIPMENT_SUB.BOOTS` | 鞋子 |
+| `EQUIPMENT_SUB.BANGLE` | 护臂 |
+| `EQUIPMENT_SUB.WAIST_EXTEND` | 腰部扩展（如酒壶） |
+| `EQUIPMENT_SUB.PACKAGE` | 包裹 |
+| `EQUIPMENT_SUB.ARROW` | 暗器 |
+| `EQUIPMENT_SUB.BACK_EXTEND` | 背部扩展 |
+| `EQUIPMENT_SUB.HORSE` | 坐骑 |
+| `EQUIPMENT_SUB.BULLET` | 弩箭/陷阱 |
+| `EQUIPMENT_SUB.FACE_EXTEND` | 脸部扩展 |
+| `EQUIPMENT_SUB.MINI_AVATAR` | 小头像 |
+| `EQUIPMENT_SUB.PET` | 跟宠 |
+| `EQUIPMENT_SUB.L_SHOULDER_EXTEND` | 左肩挂件 |
+| `EQUIPMENT_SUB.R_SHOULDER_EXTEND` | 右肩挂件 |
+| `EQUIPMENT_SUB.BACK_CLOAK_EXTEND` | 披风 |
+| `EQUIPMENT_SUB.HORSE_EQUIP` | 马具 |
+| `EQUIPMENT_SUB.BAG_EXTEND` | 包包挂件 |
+| `EQUIPMENT_SUB.PENDENT_PET` | 挂宠 |
+| `EQUIPMENT_SUB.TOTAL` | 总数 |
+
+---
+
+## WEAPON_DETAIL {#WEAPON_DETAIL}
+
+武器详细类型常量。
+
+| 常量 | 描述 |
+|------|------|
+| `WEAPON_DETAIL.WAND` | 法杖 |
+| `WEAPON_DETAIL.SPEAR` | 长枪 |
+| `WEAPON_DETAIL.SWORD` | 剑 |
+| `WEAPON_DETAIL.FIST` | 拳套 |
+| `WEAPON_DETAIL.DOUBLE_WEAPON` | 双武器 |
+| `WEAPON_DETAIL.PEN` | 笔 |
+| `WEAPON_DETAIL.SLING_SHOT` | 弹弓 |
+| `WEAPON_DETAIL.DART` | 飞镖 |
+| `WEAPON_DETAIL.MACH_DART` | 机关飞镖 |
+| `WEAPON_DETAIL.BIG_SWORD` | 重剑 |
+| `WEAPON_DETAIL.FLUTE` | 笛子 |
+| `WEAPON_DETAIL.BOW` | 弓 |
+| `WEAPON_DETAIL.KNIFE` | 刀 |
+| `WEAPON_DETAIL.STICK` | 棍棒 |
+| `WEAPON_DETAIL.BLADE_SHIELD` | 刀盾 |
+| `WEAPON_DETAIL.HEPTA_CHORD` | 七弦琴 |
+| `WEAPON_DETAIL.BROAD_SWORD` | 阔剑 |
+| `WEAPON_DETAIL.UMBRELLA` | 伞 |
+| `WEAPON_DETAIL.CHAIN_BLADE` | 链刀 |
+| `WEAPON_DETAIL.TOTAL` | 总数 |
+
+---
+
+## INVENTORY_INDEX {#INVENTORY_INDEX}
+
+装备栏索引常量。
+
+| 常量 | 描述 |
+|------|------|
+| `INVENTORY_INDEX.MELEE_WEAPON` | 近战武器槽 |
+| `INVENTORY_INDEX.BIG_SWORD` | 重剑槽 |
+| `INVENTORY_INDEX.RANGE_WEAPON` | 远程武器槽 |
+| `INVENTORY_INDEX.CHEST` | 上衣槽 |
+| `INVENTORY_INDEX.HELM` | 头盔槽 |
+| `INVENTORY_INDEX.AMULET` | 项链槽 |
+| `INVENTORY_INDEX.LEFT_RING` | 左戒指槽 |
+| `INVENTORY_INDEX.RIGHT_RING` | 右戒指槽 |
+| `INVENTORY_INDEX.WAIST` | 腰带槽 |
+| `INVENTORY_INDEX.PENDANT` | 腰缀槽 |
+| `INVENTORY_INDEX.PANTS` | 裤子槽 |
+| `INVENTORY_INDEX.BOOTS` | 鞋子槽 |
+| `INVENTORY_INDEX.BANGLE` | 护臂槽 |
+| `INVENTORY_INDEX.PACKAGE1` | 包裹 1 槽 |
+| `INVENTORY_INDEX.PACKAGE2` | 包裹 2 槽 |
+| `INVENTORY_INDEX.PACKAGE3` | 包裹 3 槽 |
+| `INVENTORY_INDEX.PACKAGE4` | 包裹 4 槽 |
+| `INVENTORY_INDEX.PACKAGE_MIBAO` | 密保包裹槽 |
+| `INVENTORY_INDEX.BANK_PACKAGE1` | 仓库包裹 1 槽 |
+| `INVENTORY_INDEX.BANK_PACKAGE2` | 仓库包裹 2 槽 |
+| `INVENTORY_INDEX.BANK_PACKAGE3` | 仓库包裹 3 槽 |
+| `INVENTORY_INDEX.BANK_PACKAGE4` | 仓库包裹 4 槽 |
+| `INVENTORY_INDEX.BANK_PACKAGE5` | 仓库包裹 5 槽 |
+| `INVENTORY_INDEX.ARROW` | 暗器槽 |
+| `INVENTORY_INDEX.HEAD_HORSE_EQUIP` | 马具头部槽 |
+| `INVENTORY_INDEX.CHEST_HORSE_EQUIP` | 马具胸部槽 |
+| `INVENTORY_INDEX.FOOT_HORSE_EQUIP` | 马具脚部槽 |
+| `INVENTORY_INDEX.HANG_ITEM_HORSE_EQUIP` | 马具挂件槽 |
+| `INVENTORY_INDEX.TOTAL` | 总数 |
+
+---
+
+## CAMP {#CAMP}
+
+阵营常量。
+
+| 常量 | 描述 |
+|------|------|
+| `CAMP.NEUTRAL` | 中立 |
+| `CAMP.GOOD` | 浩气盟 |
+| `CAMP.EVIL` | 恶人谷 |
+
+---
+
+## TARGET {#TARGET}
+
+目标类型常量。
+
+| 常量 | 描述 |
+|------|------|
+| `TARGET.NO_TARGET` | 无目标 |
+| `TARGET.NPC` | NPC 目标 |
+| `TARGET.PLAYER` | 玩家目标 |
+| `TARGET.DOODAD` | Doodad 目标 |
+| `TARGET.ITEM` | 物品目标 |
+| `TARGET.COORDINATES` | 坐标目标 |
+
+---
+
+## ROLE_TYPE {#ROLE_TYPE}
+
+角色类型常量。
+
+| 常量 | 描述 |
+|------|------|
+| `ROLE_TYPE.INVALID` | 无效 |
+| `ROLE_TYPE.STANDARD_NPC` | 标准 NPC |
+| `ROLE_TYPE.STANDARD_MALE` | 标准男性玩家 |
+| `ROLE_TYPE.STANDARD_FEMALE` | 标准女性玩家 |
+| `ROLE_TYPE.LITTLE_BOY` | 小男孩 |
+| `ROLE_TYPE.LITTLE_GIRL` | 小女孩 |
+| `ROLE_TYPE.MONSTER` | 怪物 |
+| `ROLE_TYPE.TOTAL` | 总数 |
+
+---
+
+## PK_STATE {#PK_STATE}
+
+PK 状态常量。
+
+| 常量 | 描述 |
+|------|------|
+| `PK_STATE.CLOSE` | PK 关闭 |
+| `PK_STATE.OPEN` | PK 开启 |
+| `PK_STATE.CAMP` | 阵营 PK |
+| `PK_STATE.TONG` | 帮会 PK |
+
+---
+
+## MOVE_STATE {#MOVE_STATE}
+
+移动状态常量。
+
+| 常量 | 描述 |
+|------|------|
+| `MOVE_STATE.ON_STAND` | 站立 |
+| `MOVE_STATE.ON_WALK` | 行走 |
+| `MOVE_STATE.ON_RUN` | 奔跑 |
+| `MOVE_STATE.ON_JUMP` | 跳跃 |
+| `MOVE_STATE.ON_SWIM` | 游泳 |
+| `MOVE_STATE.ON_KNOCK_DOWN` | 被击倒 |
+| `MOVE_STATE.ON_KNOCK_BACK` | 被击退 |
+| `MOVE_STATE.ON_KNOCK_OFF` | 被击飞 |
+| `MOVE_STATE.ON_HALT` | 停顿 |
+| `MOVE_STATE.ON_FREEZE` | 冻结 |
+| `MOVE_STATE.ON_ENTRAP` | 被困 |
+| `MOVE_STATE.ON_SIT` | 坐下 |
+| `MOVE_STATE.ON_DEATH` | 死亡 |
+| `MOVE_STATE.ON_DASH` | 冲刺 |
+| `MOVE_STATE.ON_PULL` | 被拉 |
+| `MOVE_STATE.ON_REPULSED` | 被推 |
+| `MOVE_STATE.ON_RISE` | 起身 |
+| `MOVE_STATE.ON_AUTO_FLY` | 自动飞行 |
+
+---
+
+## INVENTORY_TYPE {#INVENTORY_TYPE}
+
+背包类型常量。
+
+| 常量 | 描述 |
+|------|------|
+| `INVENTORY_TYPE.EQUIPMENT` | 装备栏 |
+| `INVENTORY_TYPE.PACKAGE` | 背包 |
+| `INVENTORY_TYPE.BANK` | 仓库 |
+| `INVENTORY_TYPE.SLOT` | 槽位 |
+| `INVENTORY_TYPE.SOLD_LIST` | 已售列表 |
+| `INVENTORY_TYPE.SYSTEM_PACKAGE` | 系统包裹 |
+| `INVENTORY_TYPE.BULLET_PACKAGE` | 弹药包裹 |
+| `INVENTORY_TYPE.TIME_LIMIT_SOLD_LIST` | 限时已售列表 |
+| `INVENTORY_TYPE.CUB_PACKAGE` | 幼崽包裹 |
+| `INVENTORY_TYPE.HORSE_PACKAGE` | 马匹包裹 |
+| `INVENTORY_TYPE.TOTAL` | 总数 |
+
+---
+
+## ITEM_BIND {#ITEM_BIND}
+
+物品绑定类型常量。
+
+| 常量 | 描述 |
+|------|------|
+| `ITEM_BIND.INVALID` | 无效 |
+| `ITEM_BIND.NEVER_BIND` | 永不绑定 |
+| `ITEM_BIND.BIND_ON_EQUIPPED` | 装备绑定 |
+| `ITEM_BIND.BIND_ON_PICKED` | 拾取绑定 |
+| `ITEM_BIND.BIND_ON_TIME_LIMITATION` | 时限绑定 |
+
+---
+
+## ANNOUNCE_SHOW_TYPE {#ANNOUNCE_SHOW_TYPE}
+
+公告显示类型常量。
+
+| 常量 | 描述 |
+|------|------|
+| `ANNOUNCE_SHOW_TYPE.INVALID` | 无效 |
+| `ANNOUNCE_SHOW_TYPE.CHAT_BOX` | 聊天框显示 |
+| `ANNOUNCE_SHOW_TYPE.SCROLL_BOX` | 滚动框显示 |
+| `ANNOUNCE_SHOW_TYPE.BOSS_TIP` | Boss 提示显示 |
+| `ANNOUNCE_SHOW_TYPE.COUNT_DOWN` | 倒计时显示 |
+| `ANNOUNCE_SHOW_TYPE.SCROLL_BOX_GM` | GM 滚动框 |
+| `ANNOUNCE_SHOW_TYPE.SCROLL_BOX_FIREWORKS` | 烟花滚动框 |
+| `ANNOUNCE_SHOW_TYPE.CALENDAR_BOX` | 日历框 |
+
+---
+
+## MAP_TYPE {#MAP_TYPE}
+
+地图类型常量。
+
+| 常量 | 描述 |
+|------|------|
+| `MAP_TYPE.INVALID` | 无效 |
+| `MAP_TYPE.NORMAL` | 普通地图 |
+| `MAP_TYPE.DUNGEON` | 副本 |
+| `MAP_TYPE.BATTLE_FIELD` | 战场 |
+| `MAP_TYPE.ARENA` | 竞技场 |
+
+---
+
+## FORCE_TYPE {#FORCE_TYPE}
+
+门派类型常量。
+
+| 常量 | 描述 |
+|------|------|
+| `FORCE_TYPE.INVALID` | 无效 |
+| `FORCE_TYPE.SHAO_LIN` | 少林 |
+| `FORCE_TYPE.WAN_HUA` | 万花 |
+| `FORCE_TYPE.TIAN_CE` | 天策 |
+| `FORCE_TYPE.CHUN_YANG` | 纯阳 |
+| `FORCE_TYPE.QI_XIU` | 七秀 |
+| `FORCE_TYPE.WU_DU` | 五毒 |
+| `FORCE_TYPE.TANG_MEN` | 唐门 |
+| `FORCE_TYPE.CANG_JIAN` | 藏剑 |
+| `FORCE_TYPE.GAI_BANG` | 丐帮 |
+| `FORCE_TYPE.MING_JIAO` | 明教 |
+| `FORCE_TYPE.CANG_YUN` | 苍云 |
+| `FORCE_TYPE.CHANG_GE` | 长歌 |
+| `FORCE_TYPE.BA_DAO` | 霸刀 |
+| `FORCE_TYPE.PENG_LAI` | 蓬莱 |
+| `FORCE_TYPE.LING_XUE` | 凌雪 |
+| `FORCE_TYPE.YAN_TIAN` | 衍天 |
+| `FORCE_TYPE.YAO_ZONG` | 药宗 |
+| `FORCE_TYPE.DAO_ZONG` | 刀宗 |
+| `FORCE_TYPE.WAN_LING` | 万灵 |
+
+---
+
+## VIP_TYPE {#VIP_TYPE}
+
+VIP 类型常量。
+
+| 常量 | 描述 |
+|------|------|
+| `VIP_TYPE.NONE` | 无 VIP |
+| `VIP_TYPE.VIP` | VIP |
+| `VIP_TYPE.SUPER_VIP` | 超级 VIP |
+
+---
+
+## SERVER_TYPE {#SERVER_TYPE}
+
+服务器类型常量。
+
+| 常量 | 描述 |
+|------|------|
+| `SERVER_TYPE.NORMAL` | 普通服务器 |
+| `SERVER_TYPE.PVP` | PVP 服务器 |
+
+---
+
+## PARTY_LOOT_MODE {#PARTY_LOOT_MODE}
+
+队伍拾取模式常量。
+
+| 常量 | 描述 |
+|------|------|
+| `PARTY_LOOT_MODE.FREE_FOR_ALL` | 自由拾取 |
+| `PARTY_LOOT_MODE.DISTRIBUTE` | 分配 |
+| `PARTY_LOOT_MODE.GROUP_LOOT` | 团队拾取 |
+| `PARTY_LOOT_MODE.BIDDING` | 竞价 |
+
+---
+
+## DOODAD_KIND {#DOODAD_KIND}
+
+Doodad 种类常量。
+
+| 常量 | 描述 |
+|------|------|
+| `DOODAD_KIND.INVALID` | 无效 |
+| `DOODAD_KIND.NORMAL` | 普通 Doodad |
+| `DOODAD_KIND.CORPSE` | 尸体 |
+| `DOODAD_KIND.CRAFT_TARGET` | 生活技能目标 |
+| `DOODAD_KIND.QUEST` | 任务 Doodad |
+| `DOODAD_KIND.READ` | 可阅读 Doodad |
+| `DOODAD_KIND.GUIDE` | 引导 Doodad |
+| `DOODAD_KIND.DOOR` | 门 |
+| `DOODAD_KIND.TRAP` | 陷阱 |
+| `DOODAD_KIND.TREASURE` | 宝藏 |
+| `DOODAD_KIND.CLIENT_ONLY` | 仅客户端 |
+
+---
+
+## RELATION_TYPE {#RELATION_TYPE}
+
+关系类型常量。
+
+| 常量 | 描述 |
+|------|------|
+| `RELATION_TYPE.SELF` | 自己 |
+| `RELATION_TYPE.ALLY` | 盟友 |
+| `RELATION_TYPE.ENEMY` | 敌人 |
+| `RELATION_TYPE.NEUTRALITY` | 中立 |
+| `RELATION_TYPE.PARTY` | 队友 |
+| `RELATION_TYPE.RAID` | 团队成员 |
+
+---
+
+## QUEST_STATE {#QUEST_STATE}
+
+任务状态常量。
+
+| 常量 | 描述 |
+|------|------|
+| `QUEST_STATE.NOT_ACCEPT` | 未接受 |
+| `QUEST_STATE.ACCEPTED` | 已接受 |
+| `QUEST_STATE.FINISHED` | 已完成 |
+
+---
+
+## MAIL_TYPE {#MAIL_TYPE}
+
+邮件类型常量。
+
+| 常量 | 描述 |
+|------|------|
+| `MAIL_TYPE.INVALID` | 无效 |
+| `MAIL_TYPE.PLAYER` | 玩家邮件 |
+| `MAIL_TYPE.SYSTEM` | 系统邮件 |
+| `MAIL_TYPE.TEXT_ONLY` | 纯文本邮件 |
+
+---
+
+## CHARACTER_GENDER {#CHARACTER_GENDER}
+
+角色性别常量。
+
+| 常量 | 描述 |
+|------|------|
+| `CHARACTER_GENDER.INVALID` | 无效 |
+| `CHARACTER_GENDER.MALE` | 男性 |
+| `CHARACTER_GENDER.FEMALE` | 女性 |
+
+---
+
+## PLAYER_TALK_ERROR {#PLAYER_TALK_ERROR}
+
+聊天错误码常量。
+
+| 常量 | 描述 |
+|------|------|
+| `PLAYER_TALK_ERROR.PLAYER_NOT_FOUND` | 找不到玩家 |
+| `PLAYER_TALK_ERROR.NOT_IN_PARTY` | 不在队伍中 |
+| `PLAYER_TALK_ERROR.NOT_IN_SENCE` | 不在场景中 |
+| `PLAYER_TALK_ERROR.PLAYER_OFFLINE` | 玩家离线 |
+| `PLAYER_TALK_ERROR.YOU_BLACKLIST_TARGET` | 目标在你的黑名单中 |
+| `PLAYER_TALK_ERROR.TARGET_BLACKLIST_YOU` | 你在目标的黑名单中 |
+| `PLAYER_TALK_ERROR.BAN` | 被禁言 |
+| `PLAYER_TALK_ERROR.SCENE_CD` | 场景冷却中 |
+| `PLAYER_TALK_ERROR.NOT_IN_TONG` | 不在帮会中 |
+| `PLAYER_TALK_ERROR.TONG_CAN_NOT_SPEAK` | 无法在帮会发言 |
+| `PLAYER_TALK_ERROR.DAILY_LIMIT` | 达到每日限制 |
+| `PLAYER_TALK_ERROR.NOT_IN_FORCE` | 不在门派中 |
+| `PLAYER_TALK_ERROR.CHARGE_LIMIT` | 充值限制 |
+| `PLAYER_TALK_ERROR.REMOTE_PLAYER_LIMIT` | 异地玩家限制 |
+| `PLAYER_TALK_ERROR.DISABLE_TALK` | 聊天已禁用 |
+| `PLAYER_TALK_ERROR.NO_IDENTITY` | 无身份 |
+| `PLAYER_TALK_ERROR.BREAK_RULE` | 违规 |
+| `PLAYER_TALK_ERROR.BULLET_SCREEN_DISABLE` | 弹幕已禁用 |
+| `PLAYER_TALK_ERROR.BULLET_SCREEN_TEXT_LEN_LIMIT` | 弹幕文本长度限制 |
+| `PLAYER_TALK_ERROR.MUTE_ALL` | 全体禁言 |
+| `PLAYER_TALK_ERROR.TARGET_APP_BLACKLIST_YOU` | 目标 APP 已将你拉黑 |
+
+---
+
+## 另见
+
+- [UI 对象常量](./UIObject.zh-CN.md)
+- [更多常量](./Constants2.zh-CN.md)
